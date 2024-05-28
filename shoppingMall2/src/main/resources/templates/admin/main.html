@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>쇼핑몰 관리자 페이지</title>
+<link href="/css/style.css" rel="stylesheet">
+</head>
+<body>
+	<div th:replace="~{/admin/layout::header}"></div>
+	<div class="container">
+		<h1 class="page_title">관리자 메인</h1>
+		<table border="1">
+			<thead>
+				<tr>
+					<th>상품번호</th>
+					<th>상품명</th>
+					<th>수량</th>
+					<th>등록일</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="product : ${products}">
+					<td th:text="${product.pno}"></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Insert title here</title>
+
+</head>
+<body>
+	<h1>관리자 로그인</h1>
+	<form action="/admin/login" method="post">
+		<div>
+			<label>ID</label>
+			<input type="text" name="username" id="username" placeholder="아이디">
+		</div>
+		<div>
+			<label>PW</label>
+			<input type="password" name="pw" id="pw" placeholder="비밀번호">
+		</div>
+		<input type="submit" value="로그인">
+	</form>
+</body>
+</html>
