@@ -23,7 +23,7 @@
 			<tbody>
 				<tr th:each="product : ${products}">
 					<td th:text="${product.pno}"></td>
-					<td th:text="${product.pname}"></td>
+					<td><a th:href="@{/admin/detail(pno=${product.pno})}">[[${product.pname}]]</a></td>
 					<td th:text="${product.amount}"></td>
 					<td th:text="${product.regdate}"></td>
 				</tr>

@@ -17,5 +17,10 @@ public interface IAdminDao {
 	public List<Product> getAllProducts();
 	// 상품 등록하기
 	public void registProduct(@Param("product")Product product);
-	
+	// 상품 정보 가져오기
+	public Product getProduct(Long pno);
+	// 상품 삭제하기
+	public void deleteProduct(Long pno);
+	// 상품 수정하기
+	public void modifyProduct(@Param("product")Product product);
 }

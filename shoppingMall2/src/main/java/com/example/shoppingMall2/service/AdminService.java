@@ -30,7 +30,25 @@ public class AdminService {
 	
 	
 	// 상품 등록하기
-	public void registProduct(@Param("product")Product product) {
+	public void registProduct(Product product) {
 		adminDao.registProduct(product);
-	};
+	}
+	
+	// 상품 정보 가져오기
+	public Product getProduct(Long pno) {
+		Product product = adminDao.getProduct(pno);
+		return product;
+	}
+	
+	// 상품 삭제하기
+	public void deleteProduct(Long pno) {
+		adminDao.deleteProduct(pno);
+	}
+	
+	// 상품 수정하기
+	public void modifyProduct(Product product) {
+		adminDao.modifyProduct(product);
+	}
+	
+	
 }

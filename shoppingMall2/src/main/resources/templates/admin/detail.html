@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>쇼핑몰 관리자 페이지</title>
+<link href="/css/style.css" rel="stylesheet">
+</head>
+<body>
+	<div th:replace="~{/admin/layout::header}"></div>
+	<div class="container">
+		<h1 class="page_title">상품 상세보기</h1>
+		<table border="1">
+			<tbody>
+				<tr>
+					<td>상품번호</td>
+					<td>[[${product.pno}]]</td>
+				</tr>
+				<tr>
+					<td>상품명</td>
+					<td>[[${product.pname}]]</td>
+				</tr>
+				<tr>
+					<td>대표사진</td>
+					<td><img th:src="@{'/images/' + ${product.pimg}}"></td>
+				</tr>
+				<tr>
+					<td>내용</td>
+					<td>[[${product.pcontent}]]</td>
+				</tr>
+				<tr>
+					<td>상품 설명 이미지</td>
+					<td><img th:src="@{'/images/' + ${product.pcontent_img}}"></td>
+				</tr>
+				<tr>
+					<td>입고 가격</td>
+					<td>[[${product.stockprice}]]</td>
+				</tr>
+				<tr>
+					<td>판매 가격</td>
+					<td>[[${product.saleprice}]]</td>
+				</tr>
+				<tr>
+					<td>등록일</td>
+					<td>[[${product.regdate}]]</td>
+				</tr>
+				<tr>
+					<td>수량</td>
+					<td>[[${product.amount}]]</td>
+				</tr>
+			</tbody>
+		</table>
+		<a class="btn-admin-purple" th:href="@{/admin/delete(pno=${product.pno})}">삭제하기</a>
+		<a class="btn-admin-purple" th:href="@{/admin/modifyForm(pno=${product.pno})}">수정하기</a>
+	</div>
+</body>
+</html>

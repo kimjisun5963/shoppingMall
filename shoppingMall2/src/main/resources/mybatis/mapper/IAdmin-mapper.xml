@@ -3,14 +3,24 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.shoppingMall2.dao.IAdminDao">
-	<select id="login">
+	<select id="login" resultType="com.example.shoppingMall2.dto.Member">
 	SELECT * FROM MEMBER WHERE username=#{param1} AND pw=#{param2}
 	</select>
-	<select id="getAllProducts">
+	<select id="getAllProducts" resultType="com.example.shoppingMall2.dto.Product">
 	SELECT * FROM product
 	</select>
 	<insert id="registProduct">
 	insert INTO product VALUES(NULL, #{product.pname}, #{product.pimg}, #{product.pcontent}, #{product.pcontent_img},
 	#{product.stockprice}, #{product.saleprice}, NOW(), #{product.amount});
 	</insert>
+	<select id="getProduct" resultType="com.example.shoppingMall2.dto.Product">
+	SELECT * FROM product WHERE pno=#{param1}
+	</select>
+	<delete id="deleteProduct">
+	DELETE FROM product WHERE pno=#{param1};
+	</delete>
+	<update id="modifyProduct">
+	UPDATE product SET pname=#{product.pname}, pcontent=#{product.pcontent}, stockprice=#{product.stockprice}, saleprice=#{product.saleprice},
+	amount=#{product.amount} WHERE pno=#{product.pno};
+	</update>
 </mapper>

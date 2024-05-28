@@ -121,11 +121,39 @@ public class AdminController {
 	}
 	
 	
+	// 상품 정보 가져오기
+	@RequestMapping("/detail")
+	public String getProduct(@RequestParam("pno")Long pno, Model model) {
+		System.out.println("상품 정보 가져오기");
+		Product product = adminService.getProduct(pno);
+		model.addAttribute("product", product);
+		return "/admin/detail";
+	}
 	
+	// 상품 삭제하기
+	@RequestMapping("/delete")
+	public String deleteProduct(@RequestParam("pno")Long pno) {
+		System.out.println("상품 삭제");
+		adminService.deleteProduct(pno);
+		return "redirect:/admin/main";
+	}
 	
+	// 상품 수정하기 폼 이동
+	@RequestMapping("/modifyForm")
+	public String modifyForm(@RequestParam("pno")Long pno, Model model) {
+		System.out.println("상품 수정하기 폼 이동");
+		Product product = adminService.getProduct(pno);
+		model.addAttribute("product", product);
+		return "admin/modify_form";
+	}
 	
-	
-	
-	
+	// 상품 수정하기
+	@RequestMapping("/modify")
+	public String modify(Product product) {
+		System.out.println("상품 수정 중");
+		adminService.modifyProduct(product);
+		
+		return "redirect:/admin/detail?pno=" + product.getPno();
+	}
 	
 }
