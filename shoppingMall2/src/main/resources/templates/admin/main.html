@@ -10,6 +10,7 @@
 	<div th:replace="~{/admin/layout::header}"></div>
 	<div class="container">
 		<h1 class="page_title">관리자 메인</h1>
+		<a class="btn-admin-purple" th:href="@{/admin/registForm}">상품 등록하기</a>
 		<table border="1">
 			<thead>
 				<tr>
@@ -22,9 +23,9 @@
 			<tbody>
 				<tr th:each="product : ${products}">
 					<td th:text="${product.pno}"></td>
-					<td></td>
-					<td></td>
-					<td></td>
+					<td th:text="${product.pname}"></td>
+					<td th:text="${product.amount}"></td>
+					<td th:text="${product.regdate}"></td>
 				</tr>
 			</tbody>
 		</table>

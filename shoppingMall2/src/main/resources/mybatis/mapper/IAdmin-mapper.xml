@@ -6,4 +6,11 @@
 	<select id="login">
 	SELECT * FROM MEMBER WHERE username=#{param1} AND pw=#{param2}
 	</select>
+	<select id="getAllProducts">
+	SELECT * FROM product
+	</select>
+	<insert id="registProduct">
+	insert INTO product VALUES(NULL, #{product.pname}, #{product.pimg}, #{product.pcontent}, #{product.pcontent_img},
+	#{product.stockprice}, #{product.saleprice}, NOW(), #{product.amount});
+	</insert>
 </mapper>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>쇼핑몰 관리자 페이지</title>
+<link href="/css/style.css" rel="stylesheet">
+</head>
+<body>
+	<div th:replace="~{/admin/layout::header}"></div>
+	<div class="container">
+		<div class="admin-form">
+			<h1 class="form_page_title">상품 등록</h1>
+			<form action="/admin/regist" method="post" enctype="multipart/form-data" onclick="return formCheck()">
+				<div>
+					<label>상품명<span class="text-red">*</span></label>
+					<input type="text" name="pname" id="pname" placeholder="상품명">
+				</div>
+				<div>
+					<label>대표사진<span class="text-red">*</span></label>
+					<input type="file" name="pimg" id="pimg">
+				</div>
+				<div>
+					<label>내용</label>
+					<textarea name="pcontent" id="pcontent" placeholder="상품 설명"></textarea>
+				</div>
+				<div>
+					<label>상품 설명 이미지</label>
+					<input type="file" name="pcontent_img" id="pcontent_img">
+				</div>
+				<div>
+					<label>입고 가격<span class="text-red">*</span></label>
+					<input type="number" name="stockprice" id="stockprice" placeholder="숫자만 입력">
+				</div>
+				<div>
+					<label>판매 가격<span class="text-red">*</span></label>
+					<input type="number" name="saleprice" id="saleprice" placeholder="숫자만 입력">
+				</div>
+				<div>
+					<label>입고 수량<span class="text-red">*</span></label>
+					<input type="number" name="amount" id="amount" placeholder="숫자만 입력">
+				</div>
+				<input class="btn-admin-purple" type="submit" value="등록">
+			</form>
+		</div>
+	</div>
+	<script>
+	const pname=document.querySelector("#pname");
+	const pimg=document.querySelector("#pimg");
+	const stockprice=document.querySelector("#stockprice");
+	const saleprice=document.querySelector("#saleprice");
+	const amount=document.querySelector("#amount");
+	
+	function formCheck(){
+		if(pname.value.length == 0){
+			alert("상품명을 입력해주세요");
+			return false;
+		}
+		if(pimg.value.length == 0){
+			alert("대표사진을 입력해주세요");
+			return false;
+		}
+		if(stockprice.value.length == 0){
+			alert("입고 가격을 입력해주세요");
+			return false;
+		}
+		if(saleprice.value.length == 0){
+			alert("판매 가격을 입력해주세요");
+			return false;
+		}
+		if(amount.value.length == 0){
+			alert("입고 수량을 입력해주세요");
+			return false;
+		}
+		return true;
+	};
+</script>
+</body>
+</html>

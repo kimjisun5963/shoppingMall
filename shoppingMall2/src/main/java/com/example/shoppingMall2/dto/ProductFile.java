@@ -1,6 +1,6 @@
 package com.example.shoppingMall2.dto;
 
-import org.modelmapper.ModelMapper;
+import org.springframework.web.multipart.MultipartFile;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,21 +9,22 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Product {
+public class ProductFile {
 
 	private Long pno;
 	private String pname;
-	private String pimg;
+	private MultipartFile pimg;
 	private String pcontent;
-	private String pcontent_img;
+	private MultipartFile pcontent_img;
 	private int stockprice;
 	private int saleprice;
 	private String regdate;
 	private Long amount;
 	
-	private static ModelMapper modelMapper = new ModelMapper();
-	
-	public static Product of(ProductFile productFile) {
-		return modelMapper.map(productFile, Product.class);
+	public String getFileNamePimg() {
+		return pimg.getOriginalFilename();
+	}
+	public String getFileNamePcontent_img() {
+		return pcontent_img.getOriginalFilename();
 	}
 }

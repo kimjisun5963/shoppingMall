@@ -25,13 +25,24 @@
 }
 
 .btn-admin-white{
-	display:block;
+	display:inline-block;
 	color:#400080;
 	background-color:#fff;
 	padding: 7px 10px;
 	border-radius:3px;
 	text-decoration: none;
 	font-weight:bold;
+	border:none;
+}
+.btn-admin-purple{
+	display:inline-block;
+	color:#fff;
+	background-color:#5400a8;
+	padding: 7px 10px;
+	border-radius:3px;
+	text-decoration: none;
+	font-weight:bold;
+	border:none;
 }
 .admin_logo{
 	font-size:32px;
@@ -44,3 +55,57 @@
 	font-weight:bold;
 	margin:30px 0;
 }
+.admin-form{
+	width:100%;
+	max-width:600px;
+	padding:30px;
+	border:1px solid #ccc;
+	border-radius:15px;
+	margin: 30px auto;
+}
+.form_page_title{
+	font-size:22px;
+	font-weight:bold;
+	text-align:center;
+	margin:30px 0;
+}
+
+.admin-form label{
+	display:block;
+	margin-bottom:5px;
+}
+.admin-form input{
+	padding:10px;
+	border:none;
+	border-radius:15px;
+	background-color:#f7f7f7;
+	width: 100%;
+	margin-bottom:20px;
+}
+.admin-form textarea{
+	padding:10px;
+	border:none;
+	border-radius:15px;
+	background-color:#f7f7f7;
+	width: 100%;
+	margin-bottom:20px;
+}
+.admin-form .btn-admin-purple{
+	display:inline-block;
+	color:#fff;
+	background-color:#5400a8;
+	padding: 7px 10px;
+	border-radius:3px;
+	text-decoration: none;
+	font-weight:bold;
+	border:none;
+}
+.text-red{
+	color:red;
+}
+
+
+
+
+
+
