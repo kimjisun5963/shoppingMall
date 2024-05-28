@@ -11,11 +11,14 @@ public class MemberService {
 	
 	@Autowired
 	IMemberDao memberDao;
+	
 	public Member login(String username, String pw) {
 		Member member = memberDao.login(username, pw);
 		return member;
 	}
 	
-
+	public void signup(Member member) {
+		memberDao.signup(member);
+	}
 	
 }

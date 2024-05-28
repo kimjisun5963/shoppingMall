@@ -58,6 +58,16 @@
 	font-weight:bold;
 	border:none;
 }
+.btn-pink{
+	display:inline-block;
+	color:#fff;
+	background-color:#ff8080;
+	padding: 7px 10px;
+	border-radius:3px;
+	text-decoration: none;
+	font-weight:bold;
+	border:none;
+}
 .admin_logo{
 	font-size:32px;
 	font-weight:bold;
@@ -110,6 +120,7 @@
 	width: 100%;
 	margin-bottom:20px;
 }
+
 .admin-form .btn-admin-purple{
 	display:inline-block;
 	color:#fff;
@@ -120,6 +131,17 @@
 	font-weight:bold;
 	border:none;
 }
+.admin-form .btn-pink{
+	display:inline-block;
+	color:#fff;
+	background-color:#ff8080;
+	padding: 7px 10px;
+	border-radius:3px;
+	text-decoration: none;
+	font-weight:bold;
+	border:none;
+}
+
 .text-red{
 	color:red;
 }

@@ -8,17 +8,29 @@
 </head>
 <body>
 	<div th:replace="~{/members/layout::header}"></div>
-	<h1>회원가입</h1>
-	<form action="/admin/login" method="post">
-		<div>
-			<label>ID</label>
-			<input type="text" name="username" id="username" placeholder="아이디">
+	<div class="container">
+		<div class="admin-form">
+			<h1 class="form_page_title">회원가입</h1>
+			<form action="/members/signup" method="post">
+				<div>
+					<label>ID<span class="text-red">*</span></label>
+					<input type="text" name="username" id="username" placeholder="아이디">
+				</div>
+				<div>
+					<label>PW<span class="text-red">*</span></label>
+					<input type="password" name="pw" id="pw" placeholder="패스워드">
+				</div>
+				<div>
+					<label>이름<span class="text-red">*</span></label>
+					<input type="text" name="name" id="name" placeholder="이름">
+				</div>
+				<div>
+					<label>주소<span class="text-red">*</span></label>
+					<input type="text" name="addr" id="addr" placeholder="주소">
+				</div>
+				<input class="btn-pink" type="submit" value="가입하기">
+			</form>
 		</div>
-		<div>
-			<label>PW</label>
-			<input type="password" name="pw" id="pw" placeholder="비밀번호">
-		</div>
-		<input type="submit" value="로그인">
-	</form>
+	</div>
 </body>
 </html>

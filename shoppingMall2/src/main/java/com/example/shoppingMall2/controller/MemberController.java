@@ -45,4 +45,25 @@ public class MemberController {
 		}
 	}
 	
+	
+	@RequestMapping("/signup")
+	public String signup(Member member) {
+		System.out.println("회원가입 중");
+		memberService.signup(member);
+		return "redirect:/";
+	}
+	
+
+	@RequestMapping("/logout")
+	public String logout(HttpServletRequest request) {
+		System.out.println("회원 로그아웃");
+		HttpSession session = request.getSession();
+		session.invalidate();
+		return "redirect:/admin/";
+	}
+	
+	
+	
+	
+	
 }
