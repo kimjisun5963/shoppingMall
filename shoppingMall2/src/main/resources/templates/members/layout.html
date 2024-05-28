@@ -1,0 +1,15 @@
+<div th:fragment="header">
+    <header class="member-header">
+        <div class="container d-flex flex-justify-between align-items-center">
+            <a class="logo" th:href="@{/}">쇼핑몰</a>
+            <div th:if="${session.member == null}">
+                <a class="btn-white" th:href="@{/members/loginForm}">로그인</a>
+                <a class="btn-white" th:href="@{/members/signupForm}">회원가입</a>
+            </div>
+            <div th:if="${session.member != null}">
+                <a class="btn-white" th:href="@{/members/mypage}">마이페이지</a>
+                <a class="btn-white" th:href="@{/members/logout}">로그아웃</a>
+            </div>
+        </div>
+    </header>
+</div>

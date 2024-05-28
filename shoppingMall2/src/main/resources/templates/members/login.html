@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>쇼핑몰</title>
+<link href="/css/style.css" rel="stylesheet">
+</head>
+<body>
+	<div th:replace="~{/members/layout::header}"></div>
+	<div class="container">
+		<h1>회원 로그인</h1>
+		<form action="/members/login" method="post">
+			<div>
+				<label>ID</label>
+				<input type="text" name="username" id="username" placeholder="아이디">
+			</div>
+			<div>
+				<label>PW</label>
+				<input type="password" name="pw" id="pw" placeholder="비밀번호">
+			</div>
+			<input type="submit" value="로그인">
+		</form>
+	</div>
+</body>
+</html>

@@ -9,6 +9,10 @@
 	background-color:#400080;
 	padding:20px;
 }
+.member-header{
+	background-color:#ff8080;
+	padding:20px;
+}
 .container{
 	width:100%;
 	max-width:1200px;
@@ -34,6 +38,16 @@
 	font-weight:bold;
 	border:none;
 }
+.btn-white{
+	display:inline-block;
+	color:#ff8080;
+	background-color:#fff;
+	padding: 7px 10px;
+	border-radius:3px;
+	text-decoration: none;
+	font-weight:bold;
+	border:none;
+}
 .btn-admin-purple{
 	display:inline-block;
 	color:#fff;
@@ -45,6 +59,12 @@
 	border:none;
 }
 .admin_logo{
+	font-size:32px;
+	font-weight:bold;
+	color:#fff;
+	text-decoration: none;
+}
+.logo{
 	font-size:32px;
 	font-weight:bold;
 	color:#fff;

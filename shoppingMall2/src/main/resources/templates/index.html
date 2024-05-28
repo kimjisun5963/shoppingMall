@@ -3,11 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Insert title here</title>
-
+<title>쇼핑몰</title>
+<link href="/css/style.css" rel="stylesheet">
 </head>
 <body>
-	<h1 th:text="test"></h1>
+	<div th:replace="~{/members/layout::header}"></div>
+	<div class="container">
+	상품리스트
 	<a th:href="@{/admin/}">관리자 로그인</a>
+	</div>
+	
 </body>
 </html>
