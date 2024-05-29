@@ -10,31 +10,9 @@
 	<div th:replace="~{/members/layout::header}"></div>
 	
 	<div class="container">
-		<h1 class="page_title">장바구니</h1>
+		<h1 class="page_title">마이페이지</h1>
 		<div>
-		<input type="checkbox" name=""> 전체 선택
-		</div>
-		<div class="shoppingBasket_box d-flex align-items-center" th:each="shoppingBasket : ${list}">
-			<div class="check_box">
-				<input type="checkbox" name=""> 선택
-			</div>
-			<div class="img_box_wrap">
-				<div class="img_box">
-					<img th:src="@{'/images/' + ${shoppingBasket.pimg}}" alt="상품">
-				</div>
-			</div>
-			<div class="info_box">
-				<div>[[${shoppingBasket.pname}]]</div>
-				<div>[[${shoppingBasket.saleprice}]]</div>
-			</div>
-			<div class="amount_box">
-				<input type="hidden" class="sbno" name="sbno" th:value="${shoppingBasket.sbno}">
-				<input type="number" class="samount" name="samount" th:value="${shoppingBasket.samount}">
-				<button class="btn-pink modifyShoppingBasketBtn">수정</button>
-			</div>
-			<div class="delete_box">
-				<button class="btn-gray deleteShoppingBasketBtn">삭제</button>
-			</div>
+		
 		</div>
 	</div>
 	<script>

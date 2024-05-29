@@ -1,5 +1,7 @@
 package com.example.shoppingMall2.controller;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.shoppingMall2.dto.Member;
+import com.example.shoppingMall2.dto.Sales;
 import com.example.shoppingMall2.dto.ShoppingBasketDto;
 import com.example.shoppingMall2.service.MemberService;
 
@@ -78,14 +81,14 @@ public class MemberController {
 	}
 	
 	@RequestMapping("modifyShoppingBasket")
-	public String modifyShoppingBasket(@RequestParam("samount")int samount, @RequestParam("sbno")Long sbno) {
+	public String modifyShoppingBasket(@RequestParam("samount")Long samount, @RequestParam("sbno")Long sbno) {
 		//System.out.println("장바구니 수정" + samount + sbno);
 		memberService.modifyShoppingBasket(samount, sbno);
 		return "redirect:/members/shoppingBasketList";
 	}
 	
 	@RequestMapping("registShoppingBasket")
-	public String registShoppingBasket(HttpServletRequest request, @RequestParam("samount")int samount, @RequestParam("pno")Long pno) {
+	public String registShoppingBasket(HttpServletRequest request, @RequestParam("samount")Long samount, @RequestParam("pno")Long pno) {
 		System.out.println("장바구니 담기" + samount + pno);
 		HttpSession session = request.getSession();
 		Member member = (Member) session.getAttribute("member");
@@ -93,6 +96,25 @@ public class MemberController {
 		return "redirect:/members/shoppingBasketList";
 	}
 	
+	@RequestMapping("deleteShoppingBasket")
+	public String deleteShoppingBasket(@RequestParam("sbno")Long sbno) {
+		System.out.println("장바구니 삭제" + sbno);
+		memberService.deleteShoppingBasket(sbno);
+		return "redirect:/members/shoppingBasketList";
+	}
 	
-	
+	@RequestMapping("salesOneProduct")
+	public String salesOneProduct(HttpServletRequest request, @RequestParam("samount")Long samount, @RequestParam("pno")Long pno) {
+		HttpSession session = request.getSession();
+		Member member = (Member) session.getAttribute("member");
+		String username = member.getUsername();
+		LocalTime now = LocalTime.now();
+		
+		String dateTime = now.toString();
+		String scode = dateTime.replaceAll("[:,.]","");
+		System.out.println("주문하기" + scode);
+		Sales sales = new Sales(null, pno, username, samount, null ,scode);
+		memberService.salesOneProduct(sales);
+		return "/members/mypage";
+	}
 }

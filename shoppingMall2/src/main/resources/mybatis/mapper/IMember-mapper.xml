@@ -23,4 +23,10 @@
 	<update id="modifyShoppingBasket">
 	UPDATE shopping_basket SET samount=#{param1} WHERE sbno=#{param2}
 	</update>
+	<delete id="deleteShoppingBasket">
+	DELETE from shopping_basket WHERE sbno=#{param1};
+	</delete>
+	<insert id="salesOneProduct">
+	INSERT INTO sales VALUES(NULL, #{sales.pno}, #{sales.username}, #{sales.samount}, NOW(), #{sales.scode});
+	</insert>
  </mapper>

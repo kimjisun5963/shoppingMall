@@ -32,7 +32,7 @@
 					</div>
 				</div>
 				<div class="btns d-flex flex-justify-between align-items-center">
-					<a class="btn-pink" href="">바로 주문</a>
+					<button class="btn-pink" onclick="orderNow()">바로 주문</button>
 					<button class="btn-pink-outline" onclick="registShoppingBasket()">장바구니 담기</button>
 				</div>
 			</div>
@@ -41,13 +41,16 @@
 			<div th:text="${product.pcontent}"></div>
 			<img th:src="@{'/images/' + ${product.pcontent_img}}" alt="상품 설명 이미지">
 		</div>
-	
 	</div>
 	<script>
 	const orderAmount = document.querySelector("#orderAmount");
 	const pno = document.querySelector("#pno");
+	
 	function registShoppingBasket(){
 		location.href="/members/registShoppingBasket?samount=" + orderAmount.value + "&pno=" + pno.value;
+	}
+	function orderNow(){
+		location.href="/members/salesOneProduct?samount=" + orderAmount.value + "&pno=" + pno.value;
 	}
 	</script>
 	
