@@ -9,4 +9,13 @@
 	<select id="getProductDetail" resultType="com.example.shoppingMall2.dto.Product">
 	SELECT * FROM product WHERE pno=#{param1};
 	</select>
+	<select id="hotProductList" resultType="com.example.shoppingMall2.dto.Product">
+	SELECT P.*, S.p_qty
+	FROM (
+	SELECT pno, COUNT(*) AS p_qty
+	        FROM sales
+	        GROUP BY pno) S
+	    INNER JOIN product P ON P.pno = S.pno
+	ORDER BY S.p_qty DESC LIMIT 6;
+	</select>
  </mapper>

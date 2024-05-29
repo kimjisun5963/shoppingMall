@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.shoppingMall2.dto.Member;
 import com.example.shoppingMall2.dto.Sales;
+import com.example.shoppingMall2.dto.SalesDetail;
 import com.example.shoppingMall2.dto.ShoppingBasket;
 import com.example.shoppingMall2.dto.ShoppingBasketDto;
 import com.example.shoppingMall2.service.MemberService;
@@ -114,7 +115,7 @@ public class MemberController {
 		System.out.println("주문하기" + scode);
 		Sales sales = new Sales(null, pno, username, samount, null ,scode);
 		memberService.salesOneProduct(sales);
-		return "/members/mypage";
+		return "redirect:/members/mypage";
 	}
 	
 	@RequestMapping("salesAll")
@@ -137,6 +138,28 @@ public class MemberController {
 			memberService.salesOneProduct(sales);
 			memberService.deleteShoppingBasket(sbno);
 		}
+		return "redirect:/members/mypage";
+	}
+	
+	
+	@RequestMapping("/mypage")
+	public String mypage(HttpServletRequest request, Model model) {
+		System.out.println("마이페이지");
+		HttpSession session = request.getSession();
+		Member member = (Member) session.getAttribute("member");
+		String username = member.getUsername();
+		List<SalesDetail> list = memberService.getSalesDetailList(username);
+		model.addAttribute("list", list);
 		return "/members/mypage";
 	}
+	
+
+	@RequestMapping("/deleteSales")
+	public String deleteSales(@RequestParam("sno")Long sno) {
+		System.out.println("주문 취소");
+		memberService.deleteSales(sno);
+		return "redirect:/members/mypage";
+	}
+	
+	
 }

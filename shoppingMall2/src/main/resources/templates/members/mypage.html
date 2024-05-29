@@ -11,35 +11,26 @@
 	
 	<div class="container">
 		<h1 class="page_title">마이페이지</h1>
-		<div>
 		
+		<div class="saleDetail_box d-flex align-items-center" th:each="saleDetail : ${list}">
+			<div class="img_box_wrap">
+				<div class="img_box">
+					<img th:src="@{'/images/' + ${saleDetail.pimg}}" alt="상품">
+				</div>
+			</div>
+			<div class="info_box">
+				<div>주문번호 [[${saleDetail.scode}]]</div>
+				<div>주문 날짜 [[${saleDetail.salesDate}]]</div>
+				<div>[[${saleDetail.pname}]]</div>
+				<div>[[${saleDetail.saleprice}]]</div>
+				<div>[[${saleDetail.samount}]]</div>
+			</div>
+			<div class="delete_box">
+				<a th:href="@{/members/deleteSales(sno=${saleDetail.sno})}" class="btn-gray">주문 취소</a>
+			</div>
 		</div>
+		
 	</div>
-	<script>
-	const sbnos = document.querySelectorAll(".sbno");
-	const samount = document.querySelectorAll(".samount");
-	const modifyShoppingBasketBtn = document.querySelectorAll(".modifyShoppingBasketBtn");
-	const deleteShoppingBasketBtn = document.querySelectorAll(".deleteShoppingBasketBtn");
 	
-	for (let i = 0; i < modifyShoppingBasketBtn.length; i++) {
-		modifyShoppingBasketBtn[i].addEventListener('click', function() {
-	        modifyShoppingBasket(i);
-	    });
-	}
-
-	for (let i = 0; i < deleteShoppingBasketBtn.length; i++) {
-		deleteShoppingBasketBtn[i].addEventListener('click', function() {
-			deleteShoppingBasket(i);
-	    });
-	}
-	
-	function modifyShoppingBasket(index) {
-	    location.href = "/members/modifyShoppingBasket?sbno=" + sbnos[index].value + "&samount=" + samount[index].value;
-	}
-	
-	function deleteShoppingBasket(i){
-		location.href="/members/deleteShoppingBasket?sbno="+ sbnos[i].value; 
-	}
-	</script>
 </body>
 </html>

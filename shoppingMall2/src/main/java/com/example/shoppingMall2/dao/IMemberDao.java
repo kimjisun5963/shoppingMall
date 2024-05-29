@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.example.shoppingMall2.dto.Member;
 import com.example.shoppingMall2.dto.Sales;
+import com.example.shoppingMall2.dto.SalesDetail;
 import com.example.shoppingMall2.dto.ShoppingBasket;
 import com.example.shoppingMall2.dto.ShoppingBasketDto;
 
@@ -21,4 +22,7 @@ public interface IMemberDao {
 	public void deleteShoppingBasket(Long bsno);
 	public void salesOneProduct(@Param("sales")Sales sales);
 	public ShoppingBasket getShoppingBasket(Long sbno);
+	public List<SalesDetail> getSalesDetailList(String username);
+	public void deleteSales(Long sno);
+	
 }

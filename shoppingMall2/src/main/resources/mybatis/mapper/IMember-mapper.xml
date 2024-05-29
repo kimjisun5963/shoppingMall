@@ -32,4 +32,15 @@
 	<select id="getShoppingBasket" resultType="com.example.shoppingMall2.dto.ShoppingBasket">
 	SELECT * FROM shopping_basket WHERE sbno=#{param1};
 	</select>
+	<select id="getSalesDetailList" resultType="com.example.shoppingMall2.dto.SalesDetail">
+	SELECT s.sno, s.salesDate, s.samount, s.scode, p.pno, p.pname, p.pimg, p.saleprice
+	FROM sales s
+	JOIN
+	product p
+	ON s.pno=p.pno
+	WHERE s.username=#{param1};
+	</select>
+	<delete id="deleteSales">
+	DELETE FROM sales WHERE sno=#{param1};
+	</delete>
  </mapper>

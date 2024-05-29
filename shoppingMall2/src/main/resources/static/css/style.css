@@ -346,4 +346,37 @@
 	width:10%;
 }
 
+.saleDetail_box{
+	width:100%;
+	padding:30px;
+	border:1px solid #ccc;
+	border-radius:15px;
+	margin-bottom:20px;
+}
+
+
+.saleDetail_box .img_box_wrap{
+	width:10%;
+}
+
+.saleDetail_box .img_box{
+	width:100px;
+	height:100px;
+	overflow:hidden;
+	padding-right:10px;
+}
+
+.saleDetail_box .img_box img{
+	width:100%;
+	max-width:100%;
+	height: auto;
+	display:inline-block;
+}
+.saleDetail_box .info_box{
+	width:80%;
+}
+
+.saleDetail_box .delete_box{
+	width:10%;
+}
 

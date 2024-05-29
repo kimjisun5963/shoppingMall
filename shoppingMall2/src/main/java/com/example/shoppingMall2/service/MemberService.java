@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.example.shoppingMall2.dao.IMemberDao;
 import com.example.shoppingMall2.dto.Member;
 import com.example.shoppingMall2.dto.Sales;
+import com.example.shoppingMall2.dto.SalesDetail;
 import com.example.shoppingMall2.dto.ShoppingBasket;
 import com.example.shoppingMall2.dto.ShoppingBasketDto;
 
@@ -52,6 +53,15 @@ public class MemberService {
 	public ShoppingBasket getShoppingBasket(Long sbno) {
 		ShoppingBasket shoppingBasket = memberDao.getShoppingBasket(sbno);
 		return shoppingBasket;
+	}
+	
+	public List<SalesDetail> getSalesDetailList(String username){
+		List<SalesDetail> list = memberDao.getSalesDetailList(username);
+		return list;
+	}
+	
+	public void deleteSales(Long sno) {
+		memberDao.deleteSales(sno);
 	}
 	
 }
