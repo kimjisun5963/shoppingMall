@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>쇼핑몰</title>
+<link href="/css/style.css" rel="stylesheet">
+</head>
+<body>
+	<div th:replace="~{/members/layout::header}"></div>
+	<div class="container">
+	<h1 class="page_title px-10">상품 상세보기</h1>
+	<div class="product_detail_top">
+		<div class="img_box">
+			<img th:src="@{'/images/' + ${product.pimg}}" alt="상품">
+		</div>
+		<div class="info_box">
+			<div class="pname">
+				[[${product.pname}]]
+			</div>
+			<div class="price d-flex flex-justify-between align-items-center">
+				<span>가격</span><span><strong>[[${product.saleprice}]]</strong>원</span>
+			</div>
+			<div class="amount  d-flex flex-justify-between align-items-center">
+				<span>재고 수량</span> <span>[[${product.amount}]]개</span>
+			</div>
+			<div class="order_amount d-flex flex-justify-between align-items-center">
+				<span>주문 수량</span>
+				<div>
+					<input type="number" name="orderAmount" value="0">
+				</div>
+			</div>
+			<div class="btns d-flex flex-justify-between align-items-center">
+				<a class="btn-pink" href="">바로 주문</a>
+				<a class="btn-pink-outline" href="">장바구니 담기</a>
+			</div>
+		</div>
+	</div>
+	<div class="product_detail_bottom">
+		<div th:text="${product.pcontent}"></div>
+		<img th:src="@{'/images/' + ${product.pcontent_img}}" alt="상품 설명 이미지">
+	</div>
+	
+	</div>
+	
+</body>
+</html>

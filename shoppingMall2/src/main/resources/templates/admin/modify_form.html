@@ -11,7 +11,7 @@
 	<div class="container">
 		<div class="admin-form">
 			<h1 class="form_page_title">상품 수정</h1>
-			<form action="/admin/modify" method="post" enctype="multipart/form-data" onclick="return formCheck()">
+			<form action="/admin/modify" method="post" enctype="multipart/form-data" onsubmit="return formCheck()">
 				<input type="hidden" name="pno" th:value="${product.pno}">
 				<div>
 					<label>상품명<span class="text-red">*</span></label>
