@@ -11,5 +11,5 @@ public class ShoppingBasket {
 	private Long sbno;
 	private Long pno;
 	private String username;
-	private Long sbmount;
+	private Long samount;
 }

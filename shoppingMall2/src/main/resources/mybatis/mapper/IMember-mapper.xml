@@ -9,4 +9,18 @@
 	<insert id="signup">
 	INSERT INTO MEMBER VALUES(NULL, #{member.username}, #{member.pw}, #{member.name}, #{member.tel}, #{member.addr}, 'ROLE_MEMBER')
 	</insert>
+	<select id="shoppingBasketList" resultType="com.example.shoppingMall2.dto.ShoppingBasketDto">
+	SELECT p.pno, p.pname, p.pimg, p.saleprice, sb.sbno, sb.username, sb.samount
+	FROM product p
+	join
+	shopping_basket sb
+	ON p.pno = sb.pno
+	WHERE username=#{param1}
+	</select>
+	<insert id="registShoppingBasket">
+	insert INTO shopping_basket VALUES(NULL, #{param1}, #{param2}, #{param3});
+	</insert>
+	<update id="modifyShoppingBasket">
+	UPDATE shopping_basket SET samount=#{param1} WHERE sbno=#{param2}
+	</update>
  </mapper>

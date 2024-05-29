@@ -40,4 +40,6 @@ public class MyController {
 		model.addAttribute("product", product);
 		return "product_detail";
 	}
+	
+	
 }

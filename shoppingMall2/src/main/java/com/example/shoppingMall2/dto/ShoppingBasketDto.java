@@ -7,11 +7,12 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Sales {
-	private Long sno;
+public class ShoppingBasketDto {
 	private Long pno;
+	private String pname;
+	private String pimg;
+	private int saleprice;
+	private Long sbno;
 	private String username;
 	private Long samount;
-	private String salesDate;
-	private String scode;
 }

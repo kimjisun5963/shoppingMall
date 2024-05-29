@@ -1,11 +1,15 @@
 package com.example.shoppingMall2.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.shoppingMall2.dto.Member;
+import com.example.shoppingMall2.dto.ShoppingBasketDto;
 import com.example.shoppingMall2.service.MemberService;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -62,7 +66,32 @@ public class MemberController {
 		return "redirect:/admin/";
 	}
 	
+	@RequestMapping("/shoppingBasketList")
+	public String shoppingBasketList(HttpServletRequest request, Model model) {
+		System.out.println("장바구니 가기");
+		HttpSession session = request.getSession();
+		Member member = (Member) session.getAttribute("member");
+		List<ShoppingBasketDto> shoppingBasketList = memberService.shoppingBasketList(member.getUsername());
+		System.out.println(shoppingBasketList);
+		model.addAttribute("list", shoppingBasketList);
+		return "/members/shopping_basket";
+	}
 	
+	@RequestMapping("modifyShoppingBasket")
+	public String modifyShoppingBasket(@RequestParam("samount")int samount, @RequestParam("sbno")Long sbno) {
+		//System.out.println("장바구니 수정" + samount + sbno);
+		memberService.modifyShoppingBasket(samount, sbno);
+		return "redirect:/members/shoppingBasketList";
+	}
+	
+	@RequestMapping("registShoppingBasket")
+	public String registShoppingBasket(HttpServletRequest request, @RequestParam("samount")int samount, @RequestParam("pno")Long pno) {
+		System.out.println("장바구니 담기" + samount + pno);
+		HttpSession session = request.getSession();
+		Member member = (Member) session.getAttribute("member");
+		memberService.registShoppingBasket(pno, member.getUsername(), samount);
+		return "redirect:/members/shoppingBasketList";
+	}
 	
 	
 	

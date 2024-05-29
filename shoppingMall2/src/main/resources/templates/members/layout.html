@@ -9,6 +9,7 @@
             </div>
             <div th:if="${session.member != null}">
             	<a class="btn-menu" href="/productList"> 🍍 전체상품 보기</a>
+            	<a class="btn-menu" href="/members/shoppingBasketList"> 🛒 장바구니</a>
                 <a class="btn-white" th:href="@{/members/mypage}">마이페이지</a>
                 <a class="btn-white" th:href="@{/members/logout}">로그아웃</a>
             </div>
