@@ -16,7 +16,7 @@
 		</div>
 		<div class="shoppingBasket_box d-flex align-items-center" th:each="shoppingBasket : ${list}">
 			<div class="check_box">
-				<input type="checkbox" name=""> 선택
+				<input type="checkbox" class="chk" name="chk" th:value="${shoppingBasket.sbno}"> 선택
 			</div>
 			<div class="img_box_wrap">
 				<div class="img_box">
@@ -36,10 +36,12 @@
 				<button class="btn-gray deleteShoppingBasketBtn">삭제</button>
 			</div>
 		</div>
+		<button class="btn-pink" onclick="orderSend()" style="width:100%">주문하기</button>
 	</div>
 	<script>
 	const sbnos = document.querySelectorAll(".sbno");
 	const samount = document.querySelectorAll(".samount");
+	const chkes = document.querySelectorAll(".chk");
 	const modifyShoppingBasketBtn = document.querySelectorAll(".modifyShoppingBasketBtn");
 	const deleteShoppingBasketBtn = document.querySelectorAll(".deleteShoppingBasketBtn");
 	
@@ -61,6 +63,23 @@
 	
 	function deleteShoppingBasket(i){
 		location.href="/members/deleteShoppingBasket?sbno="+ sbnos[i].value; 
+	}
+	
+	
+	function orderSend(){
+		const arr = [];
+		let str = "";
+		for(let i = 0; i < chkes.length; i++){
+			if (chkes[i].checked == true) {
+		      	arr.push(chkes[i].value);
+		      	str += "chk=" + chkes[i].value + "&";
+		      }
+		}
+		str = str.slice(0, -1);
+		console.log(arr);
+		console.log(str);
+		
+		location.href="/members/salesAll?"+ str; 
 	}
 	</script>
 </body>

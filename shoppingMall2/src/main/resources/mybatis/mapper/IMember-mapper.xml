@@ -29,4 +29,7 @@
 	<insert id="salesOneProduct">
 	INSERT INTO sales VALUES(NULL, #{sales.pno}, #{sales.username}, #{sales.samount}, NOW(), #{sales.scode});
 	</insert>
+	<select id="getShoppingBasket" resultType="com.example.shoppingMall2.dto.ShoppingBasket">
+	SELECT * FROM shopping_basket WHERE sbno=#{param1};
+	</select>
  </mapper>

@@ -1,6 +1,5 @@
 package com.example.shoppingMall2.controller;
 
-import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
@@ -12,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.shoppingMall2.dto.Member;
 import com.example.shoppingMall2.dto.Sales;
+import com.example.shoppingMall2.dto.ShoppingBasket;
 import com.example.shoppingMall2.dto.ShoppingBasketDto;
 import com.example.shoppingMall2.service.MemberService;
 
@@ -66,7 +66,7 @@ public class MemberController {
 		System.out.println("회원 로그아웃");
 		HttpSession session = request.getSession();
 		session.invalidate();
-		return "redirect:/admin/";
+		return "redirect:/";
 	}
 	
 	@RequestMapping("/shoppingBasketList")
@@ -109,12 +109,34 @@ public class MemberController {
 		Member member = (Member) session.getAttribute("member");
 		String username = member.getUsername();
 		LocalTime now = LocalTime.now();
-		
 		String dateTime = now.toString();
 		String scode = dateTime.replaceAll("[:,.]","");
 		System.out.println("주문하기" + scode);
 		Sales sales = new Sales(null, pno, username, samount, null ,scode);
 		memberService.salesOneProduct(sales);
+		return "/members/mypage";
+	}
+	
+	@RequestMapping("salesAll")
+	public String salesAll(HttpServletRequest request) {
+		String[] chkes = request.getParameterValues("chk");
+		System.out.println("주문 all " + chkes);
+		HttpSession session = request.getSession();
+		Member member = (Member) session.getAttribute("member");
+		String username = member.getUsername();
+		LocalTime now = LocalTime.now();
+		String dateTime = now.toString();
+		String scode = dateTime.replaceAll("[:,.]","");
+		System.out.println("주문하기" + scode);
+		for(String s : chkes) {
+			System.out.println(s);
+			Long sbno = (long) Integer.parseInt(s);
+			ShoppingBasket shoppingBasket = memberService.getShoppingBasket(sbno);
+			
+			Sales sales = new Sales(null, shoppingBasket.getPno(), username, shoppingBasket.getSamount(), null ,scode);
+			memberService.salesOneProduct(sales);
+			memberService.deleteShoppingBasket(sbno);
+		}
 		return "/members/mypage";
 	}
 }
