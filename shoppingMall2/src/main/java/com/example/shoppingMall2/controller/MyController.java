@@ -19,7 +19,10 @@ public class MyController {
 	
 	@RequestMapping("/")
 	public String root(Model model) {
-		model.addAttribute("test", "test");
+		List<Product> hotProductList = commonService.hotProductList();
+		List<Product> newProductList = commonService.newProductList();
+		model.addAttribute("hotProductList", hotProductList);
+		model.addAttribute("newProductList", newProductList);
 		return "index";
 	}
 	
@@ -40,6 +43,5 @@ public class MyController {
 		model.addAttribute("product", product);
 		return "product_detail";
 	}
-	
 	
 }

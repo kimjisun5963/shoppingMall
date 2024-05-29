@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.shoppingMall2.dao.IMemberDao;
 import com.example.shoppingMall2.dto.Member;
+import com.example.shoppingMall2.dto.Product;
 import com.example.shoppingMall2.dto.Sales;
 import com.example.shoppingMall2.dto.SalesDetail;
 import com.example.shoppingMall2.dto.ShoppingBasket;

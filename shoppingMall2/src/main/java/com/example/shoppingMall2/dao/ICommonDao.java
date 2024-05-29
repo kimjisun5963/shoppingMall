@@ -11,4 +11,6 @@ public interface ICommonDao {
 	
 	public List<Product> getProductAllList();
 	public Product getProductDetail(Long pno);
+	public List<Product> hotProductList();
+	public List<Product> newProductList();
 }

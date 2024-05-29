@@ -23,4 +23,14 @@ public class CommonService {
 		Product product = commonDao.getProductDetail(pno);
 		return product;
 	}
+	
+	public List<Product> hotProductList(){
+		List<Product> list = commonDao.hotProductList();
+		return list;
+	}
+	
+	public List<Product> newProductList(){
+		List<Product> list = commonDao.newProductList();
+		return list;
+	}
 }

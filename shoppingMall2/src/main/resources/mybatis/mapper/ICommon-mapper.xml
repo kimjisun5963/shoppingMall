@@ -18,4 +18,7 @@
 	    INNER JOIN product P ON P.pno = S.pno
 	ORDER BY S.p_qty DESC LIMIT 6;
 	</select>
+	<select id="newProductList" resultType="com.example.shoppingMall2.dto.Product">
+	SELECT * FROM product ORDER BY regdate DESC LIMIT 6;
+	</select>
  </mapper>
