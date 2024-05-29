@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.example.shoppingMall2.dto.Member;
+import com.example.shoppingMall2.dto.Review;
 import com.example.shoppingMall2.dto.Sales;
 import com.example.shoppingMall2.dto.SalesDetail;
 import com.example.shoppingMall2.dto.ShoppingBasket;
@@ -24,5 +25,9 @@ public interface IMemberDao {
 	public ShoppingBasket getShoppingBasket(Long sbno);
 	public List<SalesDetail> getSalesDetailList(String username);
 	public void deleteSales(Long sno);
-	
+	public void updateProductAmount(Long amount, Long pno);
+	public Sales getSales(Long sno);
+	public void registReview(@Param("review")Review review);
+	public List<Review> getReviewList(Long pno);
+	public int reviewRealCheck(String username, Long pno);
 }

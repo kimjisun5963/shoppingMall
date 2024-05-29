@@ -43,4 +43,19 @@
 	<delete id="deleteSales">
 	DELETE FROM sales WHERE sno=#{param1};
 	</delete>
+	<update id="updateProductAmount">
+	UPDATE product SET amount=#{param1} WHERE pno=#{param2};
+	</update>
+	<select id="getSales">
+	SELECT * FROM sales WHERE sno=#{param1};
+	</select>
+	<insert id="registReview">
+	INSERT INTO review VALUES(NULL, #{review.pno}, #{review.username}, #{review.rcontent}, 0, NOW());
+	</insert>
+	<select id="getReviewList" resultType="com.example.shoppingMall2.dto.Review">
+	SELECT * FROM review where pno=#{param1}
+	</select>
+	<select id="reviewRealCheck">
+	SELECT COUNT(*) FROM sales WHERE username=#{param1} AND pno=#{param2};
+	</select>
  </mapper>

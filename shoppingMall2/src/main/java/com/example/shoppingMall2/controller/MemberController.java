@@ -10,10 +10,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.shoppingMall2.dto.Member;
+import com.example.shoppingMall2.dto.Product;
+import com.example.shoppingMall2.dto.Review;
 import com.example.shoppingMall2.dto.Sales;
 import com.example.shoppingMall2.dto.SalesDetail;
 import com.example.shoppingMall2.dto.ShoppingBasket;
 import com.example.shoppingMall2.dto.ShoppingBasketDto;
+import com.example.shoppingMall2.service.CommonService;
 import com.example.shoppingMall2.service.MemberService;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -25,6 +28,9 @@ public class MemberController {
 
 	@Autowired
 	MemberService memberService;
+	
+	@Autowired
+	CommonService commonService;
 	
 	@RequestMapping("/loginForm")
 	public String loginForm() {
@@ -115,6 +121,12 @@ public class MemberController {
 		System.out.println("주문하기" + scode);
 		Sales sales = new Sales(null, pno, username, samount, null ,scode);
 		memberService.salesOneProduct(sales);
+		
+		Product product = commonService.getProductDetail(pno);
+		Long amount = product.getAmount();
+		amount = (amount-samount);
+		memberService.updateProductAmount(amount, pno);
+		
 		return "redirect:/members/mypage";
 	}
 	
@@ -137,6 +149,12 @@ public class MemberController {
 			Sales sales = new Sales(null, shoppingBasket.getPno(), username, shoppingBasket.getSamount(), null ,scode);
 			memberService.salesOneProduct(sales);
 			memberService.deleteShoppingBasket(sbno);
+			
+			Product product = commonService.getProductDetail(shoppingBasket.getPno());
+			Long amount = product.getAmount();
+			amount = (amount-shoppingBasket.getSamount());
+			memberService.updateProductAmount(amount, shoppingBasket.getPno());
+			
 		}
 		return "redirect:/members/mypage";
 	}
@@ -157,8 +175,27 @@ public class MemberController {
 	@RequestMapping("/deleteSales")
 	public String deleteSales(@RequestParam("sno")Long sno) {
 		System.out.println("주문 취소");
+		Sales sales = memberService.getSales(sno);
+		Product product = commonService.getProductDetail(sales.getPno());
+		Long amount = product.getAmount();
+		amount = (amount+sales.getSamount());
+		memberService.updateProductAmount(amount, sales.getPno());
+		
 		memberService.deleteSales(sno);
+		
 		return "redirect:/members/mypage";
+	}
+	
+	@RequestMapping("/registReview")
+	public String registReview(Review review, HttpServletRequest request) {
+		System.out.println("상품 후기 등록");
+		HttpSession session = request.getSession();
+		Member member = (Member) session.getAttribute("member");
+		String username = member.getUsername();
+		review.setUsername(username);
+		memberService.registReview(review);
+		
+		return "redirect:/productDtail?pno=" + review.getPno();
 	}
 	
 	

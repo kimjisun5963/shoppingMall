@@ -14,5 +14,6 @@ public class Review {
 	private String username;
 	private String rcontent;
 	private int scope;
-	
+	private String regdate;
+	private int check;
 }

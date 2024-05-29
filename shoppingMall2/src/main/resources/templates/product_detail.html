@@ -41,12 +41,31 @@
 			<div th:text="${product.pcontent}"></div>
 			<img th:src="@{'/images/' + ${product.pcontent_img}}" alt="상품 설명 이미지">
 		</div>
-		<h5>상품 후기</h5>
-		<div class="product_review_box">
-			<div>
-			내용 
+		
+		<h5 class="sub_title">상품 후기</h5>
+		<div class="product_review_box" th:each="review : ${reviewList}">
+			<div class="review_content">
+			[[${review.rcontent}]]
+			</div>
+			<div class="d-flex flex-justify-between align-items-center text-gray">
+				<span>[[${review.username}]]
+					<span th:if="${review.check != 0}">(실사용자)</span>
+					<span th:unless="${review.check != 0}"></span>
+				</span>
+				<span>[[${review.regdate}]]</span>
 			</div>
 		</div>
+		
+		<div class="product_review_box">
+			<form action="/members/registReview" method="post">
+				<input type="hidden" name="pno" th:value="${product.pno}">
+				<textarea name="rcontent" placeholder="상품 후기"></textarea>
+				<div class="overflow-hidden">
+					<input class="btn-pink float-right" type="submit" value="후기 등록">
+				</div>
+			</form>
+		</div>
+			
 	</div>
 	<script>
 	const orderAmount = document.querySelector("#orderAmount");

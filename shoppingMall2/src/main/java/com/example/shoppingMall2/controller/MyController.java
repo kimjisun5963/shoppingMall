@@ -9,13 +9,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.shoppingMall2.dto.Product;
+import com.example.shoppingMall2.dto.Review;
 import com.example.shoppingMall2.service.CommonService;
+import com.example.shoppingMall2.service.MemberService;
 
 @Controller
 public class MyController {
 	
 	@Autowired
 	CommonService commonService;
+	
+	@Autowired
+	MemberService memberService;
 	
 	@RequestMapping("/")
 	public String root(Model model) {
@@ -41,6 +46,16 @@ public class MyController {
 		Product product = commonService.getProductDetail(pno);
 		System.out.println(product);
 		model.addAttribute("product", product);
+		
+		List<Review> reviewList = memberService.getReviewList(pno);
+		
+		for(int i = 0; i < reviewList.size() ; i++) {
+			Review review = reviewList.get(i);
+			int result = memberService.reviewRealCheck(review.getUsername(), pno);
+			review.setCheck(result);
+		}
+		
+		model.addAttribute("reviewList", reviewList);
 		return "product_detail";
 	}
 	
