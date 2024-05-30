@@ -4,6 +4,7 @@ import java.time.LocalTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,6 +33,9 @@ public class MemberController {
 	@Autowired
 	CommonService commonService;
 	
+	@Autowired
+	private BCryptPasswordEncoder BCryptPasswordEncoder;
+	
 	@RequestMapping("/loginForm")
 	public String loginForm() {
 		System.out.println("회원 로그인폼");
@@ -44,7 +48,7 @@ public class MemberController {
 		return "/members/signup";
 	}
 	
-	@RequestMapping("/login")
+	//@RequestMapping("/login")
 	public String login(@RequestParam("username")String username, @RequestParam("pw")String pw, HttpServletRequest request) {
 		System.out.println("로그인 중");
 		
@@ -63,6 +67,11 @@ public class MemberController {
 	@RequestMapping("/signup")
 	public String signup(Member member) {
 		System.out.println("회원가입 중");
+		
+		String newPw = BCryptPasswordEncoder.encode(member.getPassword());
+		
+		member.setPassword(newPw);
+		
 		memberService.signup(member);
 		return "redirect:/";
 	}

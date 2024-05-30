@@ -15,6 +15,7 @@ import com.example.shoppingMall2.dto.ShoppingBasketDto;
 @Mapper
 public interface IMemberDao {
 
+	public Member findUsername(String username);
 	public Member login(String username, String pw);
 	public void signup(@Param("member")Member member);
 	public List<ShoppingBasketDto> shoppingBasketList(String username);

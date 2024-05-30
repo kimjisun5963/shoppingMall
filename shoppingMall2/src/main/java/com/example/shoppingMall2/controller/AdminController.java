@@ -27,14 +27,14 @@ public class AdminController {
 	AdminService adminService;
 	
 	//관리자 로그인 가자
-	@RequestMapping("/")
+	//@RequestMapping("/")
 	public String loginForm() {
 		System.out.println("관리자 로그인");
 		return "/admin/login";
 	}
 	
 	//관리자 로그인 중
-	@RequestMapping("/login")
+	//@RequestMapping("/login")
 	public String login(@RequestParam("username")String username, @RequestParam("pw")String pw, HttpServletRequest request) {
 		System.out.println("관리자 로그인 중");
 		Member member = adminService.login(username, pw);

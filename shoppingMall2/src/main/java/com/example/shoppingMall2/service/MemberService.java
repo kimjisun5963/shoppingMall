@@ -21,6 +21,11 @@ public class MemberService {
 	@Autowired
 	IMemberDao memberDao;
 	
+	public Member findUsername(String username) {
+		Member member = memberDao.findUsername(username);
+		return member;
+	}
+	
 	public Member login(String username, String pw) {
 		Member member = memberDao.login(username, pw);
 		return member;

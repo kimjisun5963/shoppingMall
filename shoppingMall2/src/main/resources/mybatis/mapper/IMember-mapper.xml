@@ -3,6 +3,9 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="com.example.shoppingMall2.dao.IMemberDao">
+ 	<select id="findUsername" resultType="com.example.shoppingMall2.dto.Member">
+ 	SELECT * FROM MEMBER WHERE username=#{param1};
+ 	</select>
  	<select id="login" resultType="com.example.shoppingMall2.dto.Member">
 	SELECT * FROM MEMBER WHERE username=#{param1} AND pw=#{param2}
 	</select>

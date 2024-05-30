@@ -11,7 +11,7 @@ public class Member {
 
 	private Long mno;
 	private String username;
-	private String pw;
+	private String password;
 	private String name;
 	private String tel;
 	private String addr;
