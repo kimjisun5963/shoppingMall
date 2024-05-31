@@ -19,6 +19,7 @@ public interface IMemberDao {
 	public Member login(String username, String pw);
 	public void signup(@Param("member")Member member);
 	public List<ShoppingBasketDto> shoppingBasketList(String username);
+	public ShoppingBasket checkShoppingBasket(Long pno, String username);
 	public void modifyShoppingBasket(Long samount, Long sbno);
 	public void registShoppingBasket(Long pno, String username, Long samount);
 	public void deleteShoppingBasket(Long bsno);

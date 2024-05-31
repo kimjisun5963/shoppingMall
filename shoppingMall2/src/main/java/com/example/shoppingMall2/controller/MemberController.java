@@ -35,8 +35,7 @@ public class MemberController {
 	@Autowired
 	CommonService commonService;
 	
-	@Autowired
-	private BCryptPasswordEncoder BCryptPasswordEncoder;
+	
 	
 	@RequestMapping("/loginForm")
 	public String loginForm() {
@@ -44,11 +43,7 @@ public class MemberController {
 		return "/members/login";
 	}
 	
-	@RequestMapping("/signupForm")
-	public String signupForm() {
-		System.out.println("회원가입 폼");
-		return "/members/signup";
-	}
+	
 	
 	//@RequestMapping("/login")
 	public String login(@RequestParam("username")String username, @RequestParam("pw")String pw, HttpServletRequest request) {
@@ -63,19 +58,6 @@ public class MemberController {
 		}else {
 			return "redirect:/members/loginForm";
 		}
-	}
-	
-	
-	@RequestMapping("/signup")
-	public String signup(Member member) {
-		System.out.println("회원가입 중");
-		
-		String newPw = BCryptPasswordEncoder.encode(member.getPassword());
-		
-		member.setPassword(newPw);
-		
-		memberService.signup(member);
-		return "redirect:/";
 	}
 	
 
@@ -110,7 +92,18 @@ public class MemberController {
 		System.out.println("장바구니 담기" + samount + pno);
 		//HttpSession session = request.getSession();
 		//Member member = (Member) session.getAttribute("member");
-		memberService.registShoppingBasket(pno, customUserDetails.getUsername(), samount);
+		ShoppingBasket shoppingBasket = memberService.checkShoppingBasket(pno, customUserDetails.getUsername());
+		System.out.println("장바구니에 있는 같은 Pno, username으로 값 " + shoppingBasket);
+		if(shoppingBasket == null) {
+			System.out.println("없어서 등록");
+			memberService.registShoppingBasket(pno, customUserDetails.getUsername(), samount);
+			
+		}else {
+			Long result = (Long) ((shoppingBasket.getSamount()) + (samount));
+			System.out.println("있아서 수정" + result);
+			memberService.modifyShoppingBasket(result, shoppingBasket.getSbno());
+		}
+		
 		return "redirect:/members/shoppingBasketList";
 	}
 	
@@ -209,5 +202,9 @@ public class MemberController {
 		return "redirect:/productDtail?pno=" + review.getPno();
 	}
 	
+	@RequestMapping("/reviewModify")
+	public String reviewModify() {
+		return "";
+	}
 	
 }

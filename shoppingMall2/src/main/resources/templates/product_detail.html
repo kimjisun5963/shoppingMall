@@ -43,19 +43,31 @@
 		</div>
 		
 		<h5 class="sub_title">상품 후기</h5>
-		<div class="product_review_box" th:each="review : ${reviewList}">
-			<div class="review_content">
-			[[${review.rcontent}]]
+		<div class="review_box_wrap" th:each="review : ${reviewList}">
+			<div class="product_review_box">
+				<div class="review_content">
+				[[${review.rcontent}]]
+				</div>
+				<div class="d-flex flex-justify-between align-items-center text-gray">
+					<span>[[${review.username}]]
+						<span th:if="${review.check != 0}">(실사용자)</span>
+						<span th:unless="${review.check != 0}"></span>
+					</span>
+					<span>[[${review.regdate}]]</span>
+					<div class="review_btn_box"  th:if="${review.username} == ${member}">
+						<a class="modify-btn reviewModifyForm_btn">수정</a>
+						<a class="delete-btn" href="">삭제</a>
+					</div>
+				</div>
 			</div>
-			<div class="d-flex flex-justify-between align-items-center text-gray">
-				<span>[[${review.username}]]
-					<span th:if="${review.check != 0}">(실사용자)</span>
-					<span th:unless="${review.check != 0}"></span>
-				</span>
-				<span>[[${review.regdate}]]</span>
+			<div class="product_review_modify_box">
+				<textarea class="rcontent" placeholder="상품 후기"></textarea>
+				<div class="overflow-hidden">
+					<input class="btn-gray float-right reviewModifyCancel_btn" type="button" value="수정 취소">
+					<input class="btn-pink float-right reviewModify_btn" type="button" value="후기 수정">
+				</div>
 			</div>
 		</div>
-		
 		<div class="product_review_box">
 			<form action="/members/registReview" method="post">
 				<input type="hidden" name="pno" th:value="${product.pno}">
@@ -74,8 +86,42 @@
 	function registShoppingBasket(){
 		location.href="/members/registShoppingBasket?samount=" + orderAmount.value + "&pno=" + pno.value;
 	}
+	
 	function orderNow(){
 		location.href="/members/salesOneProduct?samount=" + orderAmount.value + "&pno=" + pno.value;
+	}
+	
+	const reviewModifyForm_btns = document.querySelectorAll(".reviewModifyForm_btn");
+	
+	reviewModifyForm_btns.forEach((btn)=>{
+		btn.addEventListener("click", function(){
+			const reviewBox = btn.closest(".product_review_box");
+			const reviewBoxWrap = btn.closest(".review_box_wrap");
+			const text = reviewBox.querySelector('.review_content').innerText;
+			reviewBox.style.display="none";
+			reviewBoxWrap.querySelector(".product_review_modify_box").style.display="block";
+			
+			reviewBoxWrap.querySelector(".product_review_modify_box textarea").value = text;
+		})
+	})
+	
+	
+	const reviewModifyCancel_btns = document.querySelectorAll(".reviewModifyCancel_btn");
+	
+	reviewModifyCancel_btns.forEach((btn)=>{
+		btn.addEventListener("click", function(){
+			console.log("textt")
+			const product_review_modify_box = btn.closest(".product_review_modify_box");
+			const reviewBoxWrap = btn.closest(".review_box_wrap");
+			product_review_modify_box.style.display = "none";
+			reviewBoxWrap.querySelector(".product_review_box").style.display = "block";
+		})
+	})
+	
+	
+	function reviewModify(event){
+		console.log(event.target);
+		console.log(event.target.parentElement.parentElement.querySelector(".review_content"));
 	}
 	</script>
 	

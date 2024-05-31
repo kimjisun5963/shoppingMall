@@ -40,6 +40,10 @@ public class MemberService {
 		return list;
 	}
 	
+	public ShoppingBasket checkShoppingBasket(Long pno, String username) {
+		ShoppingBasket shoppingBasket = memberDao.checkShoppingBasket(pno, username);
+		return shoppingBasket;
+	}
 	public void modifyShoppingBasket(Long samount, Long sbno) {
 		//System.out.println("장바구니 수정" + samount + sbno);
 		memberDao.modifyShoppingBasket(samount, sbno);
@@ -92,5 +96,7 @@ public class MemberService {
 		int result = memberDao.reviewRealCheck(username, pno);
 		return result;
 	}
+	
+	
 	
 }

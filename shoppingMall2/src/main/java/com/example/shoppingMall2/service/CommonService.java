@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.shoppingMall2.dao.ICommonDao;
 import com.example.shoppingMall2.dto.Product;
+import com.example.shoppingMall2.dto.Review;
 
 @Service
 public class CommonService {
@@ -32,5 +33,10 @@ public class CommonService {
 	public List<Product> newProductList(){
 		List<Product> list = commonDao.newProductList();
 		return list;
+	}
+	
+	public Review getReview(Long rno) {
+		Review review = commonDao.getReview(rno);
+		return review;
 	}
 }

@@ -400,6 +400,19 @@
 .product_review_box .review_content{
 	margin-bottom: 10px;
 }
+
+.product_review_modify_box{
+	width:100%;
+	padding:30px;
+	border:1px solid #ccc;
+	border-radius:15px;
+	margin-bottom:20px;
+	display:none;
+}
+.product_review_modify_box .review_content{
+	margin-bottom: 10px;
+}
+
 .sub_title{
 	font-size: 18px;
 	margin-bottom:10px;
@@ -423,6 +436,15 @@
 	margin-bottom:10px;
 }
 
+
+.product_review_modify_box textarea{
+	padding:10px;
+	border:none;
+	border-radius:15px;
+	background-color:#f7f7f7;
+	width: 100%;
+	margin-bottom:10px;
+}
 
 .error_box h1{
 	background-color:red;

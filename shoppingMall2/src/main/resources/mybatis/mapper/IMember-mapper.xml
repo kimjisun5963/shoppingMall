@@ -23,6 +23,9 @@
 	<insert id="registShoppingBasket">
 	insert INTO shopping_basket VALUES(NULL, #{param1}, #{param2}, #{param3});
 	</insert>
+	<select id="checkShoppingBasket" resultType="com.example.shoppingMall2.dto.ShoppingBasket">
+	SELECT * FROM shopping_basket where pno=#{param1} AND username=#{param2};
+	</select>
 	<update id="modifyShoppingBasket">
 	UPDATE shopping_basket SET samount=#{param1} WHERE sbno=#{param2}
 	</update>
