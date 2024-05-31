@@ -97,6 +97,8 @@ public class MemberService {
 		return result;
 	}
 	
-	
+	public void updateReview(String rcontent, Long rno) {
+		memberDao.updateReview(rcontent, rno);
+	}
 	
 }

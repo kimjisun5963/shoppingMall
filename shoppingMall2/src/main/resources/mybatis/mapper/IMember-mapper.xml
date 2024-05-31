@@ -33,7 +33,7 @@
 	DELETE from shopping_basket WHERE sbno=#{param1};
 	</delete>
 	<insert id="salesOneProduct">
-	INSERT INTO sales VALUES(NULL, #{sales.pno}, #{sales.username}, #{sales.samount}, NOW(), #{sales.scode});
+	INSERT INTO sales VALUES(NULL, #{sales.pno}, #{sales.username}, #{sales.samount}, NOW(), #{sales.scode})
 	</insert>
 	<select id="getShoppingBasket" resultType="com.example.shoppingMall2.dto.ShoppingBasket">
 	SELECT * FROM shopping_basket WHERE sbno=#{param1};
@@ -56,12 +56,15 @@
 	SELECT * FROM sales WHERE sno=#{param1};
 	</select>
 	<insert id="registReview">
-	INSERT INTO review VALUES(NULL, #{review.pno}, #{review.username}, #{review.rcontent}, 0, NOW());
+	INSERT INTO review VALUES(NULL, #{review.pno}, #{review.username}, #{review.rcontent}, 0, NOW())
 	</insert>
 	<select id="getReviewList" resultType="com.example.shoppingMall2.dto.Review">
 	SELECT * FROM review where pno=#{param1}
 	</select>
 	<select id="reviewRealCheck">
-	SELECT COUNT(*) FROM sales WHERE username=#{param1} AND pno=#{param2};
+	SELECT COUNT(*) FROM sales WHERE username=#{param1} AND pno=#{param2}
+	</select>
+	<select id="updateReview">
+	UPDATE review SET rcontent=#{param1} WHERE rno=#{param2} 
 	</select>
  </mapper>

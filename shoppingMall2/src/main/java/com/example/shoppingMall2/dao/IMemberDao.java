@@ -32,4 +32,5 @@ public interface IMemberDao {
 	public void registReview(@Param("review")Review review);
 	public List<Review> getReviewList(Long pno);
 	public int reviewRealCheck(String username, Long pno);
+	public void updateReview(String rcontent, Long rno);
 }

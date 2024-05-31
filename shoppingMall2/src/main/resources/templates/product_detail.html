@@ -45,6 +45,7 @@
 		<h5 class="sub_title">상품 후기</h5>
 		<div class="review_box_wrap" th:each="review : ${reviewList}">
 			<div class="product_review_box">
+				<input type="hidden" class="rno" th:value="${review.rno}">
 				<div class="review_content">
 				[[${review.rcontent}]]
 				</div>
@@ -61,6 +62,7 @@
 				</div>
 			</div>
 			<div class="product_review_modify_box">
+				<input type="text" class="rno" th:value="${review.rno}">
 				<textarea class="rcontent" placeholder="상품 후기"></textarea>
 				<div class="overflow-hidden">
 					<input class="btn-gray float-right reviewModifyCancel_btn" type="button" value="수정 취소">
@@ -98,10 +100,12 @@
 			const reviewBox = btn.closest(".product_review_box");
 			const reviewBoxWrap = btn.closest(".review_box_wrap");
 			const text = reviewBox.querySelector('.review_content').innerText;
+			const rno = reviewBox.querySelector('.rno').value;
 			reviewBox.style.display="none";
 			reviewBoxWrap.querySelector(".product_review_modify_box").style.display="block";
 			
 			reviewBoxWrap.querySelector(".product_review_modify_box textarea").value = text;
+			reviewBoxWrap.querySelector(".product_review_modify_box .rno").value = rno;
 		})
 	})
 	
@@ -110,7 +114,6 @@
 	
 	reviewModifyCancel_btns.forEach((btn)=>{
 		btn.addEventListener("click", function(){
-			console.log("textt")
 			const product_review_modify_box = btn.closest(".product_review_modify_box");
 			const reviewBoxWrap = btn.closest(".review_box_wrap");
 			product_review_modify_box.style.display = "none";
@@ -118,11 +121,15 @@
 		})
 	})
 	
-	
-	function reviewModify(event){
-		console.log(event.target);
-		console.log(event.target.parentElement.parentElement.querySelector(".review_content"));
-	}
+	const reviewModify_btns = document.querySelectorAll(".reviewModify_btn");
+	reviewModify_btns.forEach((btn)=>{
+		btn.addEventListener("click", function(){
+			const product_review_modify_box = btn.parentElement.parentElement;
+			const rcontent = product_review_modify_box.querySelector("textarea").value;
+			const rno = product_review_modify_box.querySelector("input").value;
+			location.href="/members/reviewModify?rcontent=" + rcontent + "&rno=" + rno + "&pno=" + pno.value;
+		})
+	})
 	</script>
 	
 </body>

@@ -203,8 +203,10 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/reviewModify")
-	public String reviewModify() {
-		return "";
+	public String reviewModify(@RequestParam("rcontent")String rcontent, @RequestParam("rno")Long rno, @RequestParam("pno")Long pno) {
+		System.out.println("상품 후기 수정");
+		memberService.updateReview(rcontent, rno);
+		return "redirect:/productDtail?pno=" + pno;
 	}
 	
 }
