@@ -10,7 +10,7 @@
 	SELECT * FROM MEMBER WHERE username=#{param1} AND pw=#{param2}
 	</select>
 	<insert id="signup">
-	INSERT INTO MEMBER VALUES(NULL, #{member.username}, #{member.pw}, #{member.name}, #{member.tel}, #{member.addr}, 'ROLE_MEMBER')
+	INSERT INTO MEMBER VALUES(NULL, #{member.username}, #{member.password}, #{member.name}, #{member.tel}, #{member.addr}, 'ROLE_MEMBER')
 	</insert>
 	<select id="shoppingBasketList" resultType="com.example.shoppingMall2.dto.ShoppingBasketDto">
 	SELECT p.pno, p.pname, p.pimg, p.saleprice, sb.sbno, sb.username, sb.samount

@@ -59,7 +59,7 @@ public class AdminController {
 	
 	
 	//관리자 로그아웃
-	@RequestMapping("/logout")
+	//@RequestMapping("/logout")
 	public String logout(HttpServletRequest request) {
 		System.out.println("관리자 로그아웃");
 		HttpSession session = request.getSession();

@@ -4,12 +4,14 @@ import java.time.LocalTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.shoppingMall2.config.CustomUserDetails;
 import com.example.shoppingMall2.dto.Member;
 import com.example.shoppingMall2.dto.Product;
 import com.example.shoppingMall2.dto.Review;
@@ -86,11 +88,11 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/shoppingBasketList")
-	public String shoppingBasketList(HttpServletRequest request, Model model) {
+	public String shoppingBasketList(@AuthenticationPrincipal CustomUserDetails customUserDetails, Model model) {
 		System.out.println("장바구니 가기");
-		HttpSession session = request.getSession();
-		Member member = (Member) session.getAttribute("member");
-		List<ShoppingBasketDto> shoppingBasketList = memberService.shoppingBasketList(member.getUsername());
+		//HttpSession session = request.getSession();
+		//Member member = (Member) session.getAttribute("member");
+		List<ShoppingBasketDto> shoppingBasketList = memberService.shoppingBasketList(customUserDetails.getUsername());
 		System.out.println(shoppingBasketList);
 		model.addAttribute("list", shoppingBasketList);
 		return "/members/shopping_basket";
@@ -104,11 +106,11 @@ public class MemberController {
 	}
 	
 	@RequestMapping("registShoppingBasket")
-	public String registShoppingBasket(HttpServletRequest request, @RequestParam("samount")Long samount, @RequestParam("pno")Long pno) {
+	public String registShoppingBasket(@AuthenticationPrincipal CustomUserDetails customUserDetails, @RequestParam("samount")Long samount, @RequestParam("pno")Long pno) {
 		System.out.println("장바구니 담기" + samount + pno);
-		HttpSession session = request.getSession();
-		Member member = (Member) session.getAttribute("member");
-		memberService.registShoppingBasket(pno, member.getUsername(), samount);
+		//HttpSession session = request.getSession();
+		//Member member = (Member) session.getAttribute("member");
+		memberService.registShoppingBasket(pno, customUserDetails.getUsername(), samount);
 		return "redirect:/members/shoppingBasketList";
 	}
 	
@@ -120,15 +122,15 @@ public class MemberController {
 	}
 	
 	@RequestMapping("salesOneProduct")
-	public String salesOneProduct(HttpServletRequest request, @RequestParam("samount")Long samount, @RequestParam("pno")Long pno) {
-		HttpSession session = request.getSession();
-		Member member = (Member) session.getAttribute("member");
-		String username = member.getUsername();
+	public String salesOneProduct(@AuthenticationPrincipal CustomUserDetails customUserDetails, @RequestParam("samount")Long samount, @RequestParam("pno")Long pno) {
+		//HttpSession session = request.getSession();
+		//Member member = (Member) session.getAttribute("member");
+		//String username = member.getUsername();
 		LocalTime now = LocalTime.now();
 		String dateTime = now.toString();
 		String scode = dateTime.replaceAll("[:,.]","");
 		System.out.println("주문하기" + scode);
-		Sales sales = new Sales(null, pno, username, samount, null ,scode);
+		Sales sales = new Sales(null, pno, customUserDetails.getUsername(), samount, null ,scode);
 		memberService.salesOneProduct(sales);
 		
 		Product product = commonService.getProductDetail(pno);
@@ -140,12 +142,12 @@ public class MemberController {
 	}
 	
 	@RequestMapping("salesAll")
-	public String salesAll(HttpServletRequest request) {
+	public String salesAll(HttpServletRequest request, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
 		String[] chkes = request.getParameterValues("chk");
 		System.out.println("주문 all " + chkes);
-		HttpSession session = request.getSession();
-		Member member = (Member) session.getAttribute("member");
-		String username = member.getUsername();
+		//HttpSession session = request.getSession();
+		//Member member = (Member) session.getAttribute("member");
+		//String username = member.getUsername();
 		LocalTime now = LocalTime.now();
 		String dateTime = now.toString();
 		String scode = dateTime.replaceAll("[:,.]","");
@@ -155,7 +157,7 @@ public class MemberController {
 			Long sbno = (long) Integer.parseInt(s);
 			ShoppingBasket shoppingBasket = memberService.getShoppingBasket(sbno);
 			
-			Sales sales = new Sales(null, shoppingBasket.getPno(), username, shoppingBasket.getSamount(), null ,scode);
+			Sales sales = new Sales(null, shoppingBasket.getPno(), customUserDetails.getUsername(), shoppingBasket.getSamount(), null ,scode);
 			memberService.salesOneProduct(sales);
 			memberService.deleteShoppingBasket(sbno);
 			
@@ -170,12 +172,12 @@ public class MemberController {
 	
 	
 	@RequestMapping("/mypage")
-	public String mypage(HttpServletRequest request, Model model) {
+	public String mypage(@AuthenticationPrincipal CustomUserDetails customUserDetails, Model model) {
 		System.out.println("마이페이지");
-		HttpSession session = request.getSession();
-		Member member = (Member) session.getAttribute("member");
-		String username = member.getUsername();
-		List<SalesDetail> list = memberService.getSalesDetailList(username);
+		//HttpSession session = request.getSession();
+		//Member member = (Member) session.getAttribute("member");
+		//String username = member.getUsername();
+		List<SalesDetail> list = memberService.getSalesDetailList(customUserDetails.getUsername());
 		model.addAttribute("list", list);
 		return "/members/mypage";
 	}
@@ -196,11 +198,11 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/registReview")
-	public String registReview(Review review, HttpServletRequest request) {
+	public String registReview(Review review, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
 		System.out.println("상품 후기 등록");
-		HttpSession session = request.getSession();
-		Member member = (Member) session.getAttribute("member");
-		String username = member.getUsername();
+		//HttpSession session = request.getSession();
+		//Member member = (Member) session.getAttribute("member");
+		String username = customUserDetails.getUsername();
 		review.setUsername(username);
 		memberService.registReview(review);
 		
