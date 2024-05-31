@@ -59,4 +59,9 @@ public class MyController {
 		return "product_detail";
 	}
 	
+	@RequestMapping("/custom403")
+	public void custom403() {
+		System.out.println("잘못된 접근");
+	}
+	
 }

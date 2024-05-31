@@ -61,11 +61,13 @@ public class SecurityConfig {
 				})
 				);
         
-     
-		
 		http.logout((auth) -> auth
 				.logoutSuccessUrl("/")
 				
+				);
+		
+		http.exceptionHandling((auth) -> auth
+				.accessDeniedPage("/custom403")
 				);
 		
 		http.csrf(AbstractHttpConfigurer::disable); //csrf를 form 테이터에서 사용하지 않을 때/csrf 기능 끄기
