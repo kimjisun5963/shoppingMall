@@ -24,10 +24,9 @@ public class SecurityConfig {
 		
 		// 인증하지 않겠다(permitAll)나머지는 인증을 거친다(anyRequest)
 		http.authorizeHttpRequests((auth) -> auth
-				.requestMatchers("/", "/productList","/productDtail","/members/signupForm","/members/signup","/css/**", "/images/**").permitAll()
 				.requestMatchers("/members/**").hasAnyRole("ADMIN", "MEMBER")
 				.requestMatchers("/admin/**").hasRole("ADMIN")
-				.anyRequest().authenticated()
+				.anyRequest().permitAll()
 				);
 		
 		// 로그인에 대한 설정
@@ -36,7 +35,7 @@ public class SecurityConfig {
 				.loginProcessingUrl("/members/loginProc")// 로그인 폼 지정 후 폼 파라미터 보내는 경로 지정(실제로 처리하는 url, 컨트롤러를 만들지 않음) - 컨트롤러에 직접 만들지 않는다.(Spring Security)
 				.defaultSuccessUrl("/")
 				//.failureUrl("/login?error=true")
-				.permitAll() //.defaultSuccessUrl("/") // 로그인 성공했을 때 갈 페이지
+			    .permitAll() //.defaultSuccessUrl("/") // 로그인 성공했을 때 갈 페이지
 				);
 		
 		http.formLogin((auth) -> auth

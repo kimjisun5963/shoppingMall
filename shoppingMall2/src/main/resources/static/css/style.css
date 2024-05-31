@@ -190,6 +190,7 @@
 	padding:30px;
 	border:1px solid #ccc;
 	border-radius:15px;
+	min-height:411px;
 }
 .product_box .img_box{
 	width:100%;
@@ -207,6 +208,13 @@
 	font-size:22px;
 	font-weight:bold;
 	margin-top:10px;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+ 	-webkit-box-orient: vertical;
+	text-overflow: ellipsis;
+}
+.product_box .name_box a{
+	color:#333;
 }
 .product_box .price_box{
 	width:100%;
