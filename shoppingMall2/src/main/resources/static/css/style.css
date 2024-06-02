@@ -78,7 +78,7 @@
 	border-radius:3px;
 	text-decoration: none;
 	font-weight:bold;
-	border:none;
+	border:1px solid #ff8080;
 }
 .btn-gray{
 	display:inline-block;
@@ -160,7 +160,7 @@
 	border-radius:3px;
 	text-decoration: none;
 	font-weight:bold;
-	border:none;
+	border:1px solid #5400a8;
 }
 .admin-form .btn-pink{
 	display:inline-block;
@@ -170,7 +170,51 @@
 	border-radius:3px;
 	text-decoration: none;
 	font-weight:bold;
-	border:none;
+	border:1px solid #ff8080;
+}
+
+.admin-table{
+	border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    background-color: white;
+}
+
+
+.admin-table th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #666;
+  text-align: center;
+}
+
+.admin-table th {
+  background-color:#111;
+  color: #fff;
+}
+
+.admin-table tbody tr:hover {
+  background-color: #f7f7f7;
+  opacity: 0.9;
+  cursor: pointer;
+}
+
+.admin-table th:nth-child(1), td:nth-child(1) {
+  width: 10%;
+}
+
+.admin-table th:nth-child(2), td:nth-child(2) {
+  width: 50%;
+}
+.admin-table td:nth-child(2) a {
+  color:#5400a8;
+}
+
+.admin-table th:nth-child(3), td:nth-child(3) {
+  width: 30%;
+}
+.admin-table th:nth-child(4), td:nth-child(4) {
+  width: 10%;
 }
 
 .text-red{
@@ -179,6 +223,22 @@
 .search_box{
 	width: 320px;
 	margin-left: auto;
+	margin-bottom: 10px;
+}
+.search_box input[type="text"]{
+	padding: 10px;
+	border-radius:3px 0px 0px 3px;
+	border:1px solid #ccc;
+}
+.search_box input[type="button"]{
+	display:inline-block;
+	color:#fff;
+	background-color:#ff8080;
+	padding: 10px 10px;
+	border-radius:0px 3px 3px 0px;
+	text-decoration: none;
+	font-weight:bold;
+	border:none;
 }
 .flex-container {
   display: flex;
