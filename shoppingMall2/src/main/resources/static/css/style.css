@@ -176,7 +176,10 @@
 .text-red{
 	color:red;
 }
-
+.search_box{
+	width: 320px;
+	margin-left: auto;
+}
 .flex-container {
   display: flex;
   flex-wrap: wrap;
@@ -396,6 +399,7 @@
 	border:1px solid #ccc;
 	border-radius:15px;
 	margin-bottom:20px;
+	position:relative;
 }
 .product_review_box .review_content{
 	margin-bottom: 10px;
@@ -446,6 +450,35 @@
 	margin-bottom:10px;
 }
 
+.review_btn_box{
+	position: absolute;
+	top: 30px;
+	right: 30px;
+}
+
+.modify-btn{
+	display:inline-block;
+	padding: 5px 7px;
+	border-radius:3px;
+	text-decoration: none;
+	font-size: 12px;
+	font-weight:bold;
+	color:#ff8080;
+	background-color:#fff;
+	border:1px solid #ff8080;
+}
+.delete-btn{
+	display:inline-block;
+	padding: 5px 7px;
+	border-radius:3px;
+	text-decoration: none;
+	font-size: 12px;
+	font-weight:bold;
+	color:#666;
+	background-color:#fff;
+	border:1px solid #666;
+}
+
 .error_box h1{
 	background-color:red;
 	color:yellow;
@@ -458,6 +491,8 @@
 .error_box a{
 	margin-left:20px;
 }
+
+
 
 
 

@@ -56,17 +56,17 @@
 					</span>
 					<span>[[${review.regdate}]]</span>
 					<div class="review_btn_box"  th:if="${review.username} == ${member}">
-						<a class="modify-btn reviewModifyForm_btn">수정</a>
-						<a class="delete-btn" href="">삭제</a>
+						<button class="modify-btn reviewModifyForm_btn">수정</button>
+						<button class="delete-btn reviewDelete_btn">삭제</button>
 					</div>
 				</div>
 			</div>
 			<div class="product_review_modify_box">
-				<input type="text" class="rno" th:value="${review.rno}">
+				<input type="hidden" class="rno" th:value="${review.rno}">
 				<textarea class="rcontent" placeholder="상품 후기"></textarea>
 				<div class="overflow-hidden">
-					<input class="btn-gray float-right reviewModifyCancel_btn" type="button" value="수정 취소">
-					<input class="btn-pink float-right reviewModify_btn" type="button" value="후기 수정">
+					<input class="delete-btn float-right reviewModifyCancel_btn" type="button" value="수정 취소">
+					<input class="modify-btn float-right reviewModify_btn" type="button" value="후기 수정">
 				</div>
 			</div>
 		</div>
@@ -128,6 +128,21 @@
 			const rcontent = product_review_modify_box.querySelector("textarea").value;
 			const rno = product_review_modify_box.querySelector("input").value;
 			location.href="/members/reviewModify?rcontent=" + rcontent + "&rno=" + rno + "&pno=" + pno.value;
+		})
+	})
+	
+	
+	const reviewDelete_btns = document.querySelectorAll(".reviewDelete_btn");
+	reviewDelete_btns.forEach((btn)=>{
+		btn.addEventListener("click", function(){
+			if(confirm("상품 후기를 삭제하시겠습니까?")){
+				const product_review_modify_box = btn.parentElement.parentElement.parentElement;
+				const rno = product_review_modify_box.querySelector("input").value;
+				console.log(rno + "pno : " + pno.value)
+				location.href="/members/reviewDelete?rno=" + rno + "&pno=" + pno.value;
+			}else{
+				alert("상품 후기 삭제가 취소 되었습니다.");
+			}
 		})
 	})
 	</script>

@@ -10,6 +10,12 @@
 	<div th:replace="~{/members/layout::header}"></div>
 	<div class="container">
 	<h1 class="page_title px-10">전체 상품</h1>
+	<div class="d-flex">
+		<div class="search_box d-flex align-items-center">
+			<input type="text" name="keyword" id="search" placeholder="검색어를 입력하세요">
+			<input type="button" id="search_btn" value="검색">
+		</div>
+	</div>
 	<div class="flex-container">
 		<div class="product_box_wrap" th:each="product : ${productList}">
 			<div class="product_box">

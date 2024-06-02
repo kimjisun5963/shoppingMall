@@ -67,4 +67,7 @@
 	<select id="updateReview">
 	UPDATE review SET rcontent=#{param1} WHERE rno=#{param2} 
 	</select>
+	<delete id="deleteReview">
+	DELETE FROM review WHERE rno=#{param1};
+	</delete>
  </mapper>

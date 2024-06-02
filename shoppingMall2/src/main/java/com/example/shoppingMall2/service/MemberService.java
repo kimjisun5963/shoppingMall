@@ -101,4 +101,8 @@ public class MemberService {
 		memberDao.updateReview(rcontent, rno);
 	}
 	
+	public void deleteReview(Long rno) {
+		memberDao.deleteReview(rno);
+	}
+	
 }

@@ -33,4 +33,5 @@ public interface IMemberDao {
 	public List<Review> getReviewList(Long pno);
 	public int reviewRealCheck(String username, Long pno);
 	public void updateReview(String rcontent, Long rno);
+	public void deleteReview(Long rno);
 }

@@ -208,5 +208,13 @@ public class MemberController {
 		memberService.updateReview(rcontent, rno);
 		return "redirect:/productDtail?pno=" + pno;
 	}
+	@RequestMapping("/reviewDelete")
+	public String reviewDelete(@RequestParam("rno")Long rno, @RequestParam("pno")Long pno) {
+		System.out.println("상품 후기 삭제");
+		
+		memberService.deleteReview(rno);
+		
+		return "redirect:/productDtail?pno=" + pno;
+	}
 	
 }
