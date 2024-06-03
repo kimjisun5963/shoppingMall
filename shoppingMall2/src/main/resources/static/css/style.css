@@ -220,15 +220,24 @@
 .text-red{
 	color:red;
 }
+.clearfix::after {
+	content: "";
+    display:block;
+    clear:both;
+}
+.p-10{
+	padding:10px;
+}
 .search_box{
 	width: 320px;
-	margin-left: auto;
 	margin-bottom: 10px;
+	float:right;
 }
 .search_box input[type="text"]{
 	padding: 10px;
 	border-radius:3px 0px 0px 3px;
 	border:1px solid #ccc;
+	width:100%;
 }
 .search_box input[type="button"]{
 	display:inline-block;
